@@ -1,0 +1,22 @@
+/* frontend/src/index.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Styles for react-split Gutters */
+.gutter {
+    background-color: #e5e7eb; /* Light Gray */
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 100% 100%;
+}
+
+.gutter:hover {
+    background-color: #d1d5db; /* Slightly darker Gray */
+}
+
+.gutter-horizontal {
+    cursor: col-resize;
+    width: 10px;
+}

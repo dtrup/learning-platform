@@ -1,5 +1,7 @@
 [{  "id": "wisdom",
     "title": "Wisdom Guide",
+    "prompt:":
+    "Comprehensive overview of Self-Understanding & Development",
     "children":  [
         {
             "id": "self-understanding-development",
