@@ -1,19 +1,19 @@
 // backend/index.js
+
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Load initial tree data from a local file (we'll create this later)
+// Load initial tree data from a local file
 const treeData = require('./data/treeData.json');
 
 app.use(cors());
 app.use(express.json());
 
-// Gemini Setup (replace with your actual API key)
+// Gemini Setup
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // Endpoint to get tree data
@@ -21,12 +21,12 @@ app.get('/api/treedata', (req, res) => {
     res.json(treeData);
 });
 
-// Placeholder endpoint for Gemini API (we'll implement this later)
+// Endpoint to handle Gemini requests
 app.post('/api/generate-gemini', async (req, res) => {
-    const { prompt } = req.body;
+    const { prompt } = req.body; // Extract prompt from request body
 
     if (!prompt) {
-        return res.status(400).json({ error: 'Prompt is required' });
+        return res.status(400).json({ error: 'Prompt is required' }); // Return error if prompt is missing
     }
 
     try {

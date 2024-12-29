@@ -1,4 +1,4 @@
-{  "id": "wisdom",
+[{  "id": "wisdom",
     "title": "Wisdom Guide",
     "children":  [
         {
@@ -2979,4 +2979,17 @@
             ]
         }
     ]
-}
+},
+    {
+        "id": "another-guide",
+        "title": "Another Guide",
+        "children": [
+            {
+                "id": "another-guide-section-1",
+                "title": "Another Guide Section 1",
+                "prompt": "Prompt for another guide section 1...",
+                "children": []
+            }
+        ]
+    }
+]
