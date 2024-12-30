@@ -21,10 +21,10 @@ const GuideDetail = () => {
             try {
                 const data = await getGuideById(guideId);
                 setGuide(data);
-                // Optionally, select the first section by default
-                if (data.children && data.children.length > 0) {
-                    setSelectedSection(data.children[0]);
-                }
+                // **Removed automatic selection of the first section**
+                // if (data.children && data.children.length > 0) {
+                //     setSelectedSection(data.children[0]);
+                // }
             } catch (err) {
                 setError('Failed to load the selected guide.');
                 console.error(err);
@@ -55,7 +55,6 @@ const GuideDetail = () => {
                 dragInterval={1}
                 direction="horizontal"
                 cursor="col-resize"
-                // Removed the gutter function to prevent mutation errors
             >
                 {/* Guide Panel */}
                 <GuidePanel treeData={guide} onSelect={handleSectionSelect} />

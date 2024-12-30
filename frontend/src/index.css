@@ -4,19 +4,28 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom Styles for react-split Gutters */
-.gutter {
-    background-color: #e5e7eb; /* Light Gray */
+/* Add to your CSS file (e.g., index.css) */
+
+/* Gutter for Vertical Split (Resizing Height) */
+.gutter-vertical {
+    background-color: #ccc;
     background-repeat: no-repeat;
     background-position: 50%;
-    background-size: 100% 100%;
+    background-size: 100% 6px;
+    cursor: row-resize;
 }
 
-.gutter:hover {
-    background-color: #d1d5db; /* Slightly darker Gray */
-}
-
+/* Gutter for Horizontal Split (Resizing Width) */
 .gutter-horizontal {
+    background-color: #ccc;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 6px 100%;
     cursor: col-resize;
-    width: 10px;
+}
+
+/* Optional: Hover effect for gutters */
+.gutter-vertical:hover,
+.gutter-horizontal:hover {
+    background-color: #aaa;
 }

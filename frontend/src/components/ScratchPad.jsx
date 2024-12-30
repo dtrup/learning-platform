@@ -41,6 +41,7 @@ const ScratchPad = () => {
             groupedEntries[date].forEach(entry => {
                 txtContent += `  Time: ${date !== 'Unknown Date' ? format(new Date(entry.timestamp), 'hh:mm a') : 'N/A'}\n`;
                 txtContent += `  Text: ${entry.text}\n`;
+                txtContent += `  Source: ${entry.source}\n`;
                 txtContent += `  Notes: ${entry.notes}\n`;
                 txtContent += `\n`;
             });
@@ -81,7 +82,8 @@ const ScratchPad = () => {
                                     {date !== 'Unknown Date' && (
                                         <p className="text-sm text-gray-500">{format(new Date(entry.timestamp), 'hh:mm a')}</p>
                                     )}
-                                    <p className="text-gray-800 mt-1">{entry.text}</p>
+                                    <p className="text-gray-800 mt-1"><strong>Text:</strong> {entry.text}</p>
+                                    <p className="text-gray-800 mt-1"><strong>Source:</strong> {entry.source}</p>
                                     <textarea
                                         placeholder="Add notes..."
                                         value={entry.notes}
