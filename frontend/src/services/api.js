@@ -41,9 +41,15 @@ export const getGuideById = async (guideId) => {
  */
 export const generateLLMContent = async (prompt) => {
     try {
-        const response = await axios.post(`${API_BASE_URL}/api/generate`, { prompt });
-        console.log("generateLLMContent response:", response.data); // Debugging
-        return response.data.content; // Ensure it matches the backend's key
+        const response = await axios.post(`${API_BASE_URL}/api/generate`, {
+            prompt,
+            // You might want to add additional metadata
+            includeContext: true,
+            timestamp: new Date().toISOString()
+        });
+
+        console.log("generateLLMContent response:", response.data);
+        return response.data.content;
     } catch (error) {
         console.error("Error generating content:", error);
         throw error;
