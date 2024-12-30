@@ -2,9 +2,13 @@
 
 import axios from 'axios';
 
-const API_BASE_URL = process.env.REACT_APP_BACKEND_URL;
+// Base URL for the backend API
+const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'; // Update this as per your backend configuration
 
-// Fetch all guides
+/**
+ * Fetch all guides.
+ * @returns {Promise<Object[]>} Array of guide objects.
+ */
 export const getAllGuides = async () => {
     try {
         const response = await axios.get(`${API_BASE_URL}/api/treedata`);
@@ -15,7 +19,11 @@ export const getAllGuides = async () => {
     }
 };
 
-// Fetch a specific guide by ID
+/**
+ * Fetch a specific guide by ID.
+ * @param {string} guideId - The ID of the guide to fetch.
+ * @returns {Promise<Object>} The guide object.
+ */
 export const getGuideById = async (guideId) => {
     try {
         const response = await axios.get(`${API_BASE_URL}/api/treedata/${guideId}`);
@@ -26,13 +34,17 @@ export const getGuideById = async (guideId) => {
     }
 };
 
-// Generate Gemini Content
-export const generateGeminiContent = async (prompt) => {
+/**
+ * Generate content based on a prompt using the LLM.
+ * @param {string} prompt - The prompt to send to the LLM.
+ * @returns {Promise<string>} The generated content.
+ */
+export const generateLLMContent = async (prompt) => {
     try {
-        const response = await axios.post(`${API_BASE_URL}/api/generate-gemini`, { prompt });
-        return response.data.response;
+        const response = await axios.post(`${API_BASE_URL}/api/generate`, { prompt });
+        return response.data.content; // Aligns with updated backend response
     } catch (error) {
-        console.error("Error generating Gemini content:", error);
+        console.error("Error generating content:", error);
         throw error;
     }
 };

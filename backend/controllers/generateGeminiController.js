@@ -1,9 +1,6 @@
 // backend/controllers/generateGeminiController.js
 
-const { GoogleGenerativeAI } = require("@google/generative-ai");
-
-// Initialize Generative AI
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const genAI = require('../utils/genAI'); // Import the shared instance
 
 // Generate content
 const generateContent = async (req, res) => {
@@ -16,10 +13,11 @@ const generateContent = async (req, res) => {
     try {
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
         const result = await model.generateContent(prompt);
-        res.json({ response: result.response.text() });
+        res.json({ response: result.response.text() }); // Use consistent key 'response'
     } catch (error) {
-        console.error("Gemini API call failed:", error);
-        res.status(500).json({ error: 'Error generating response from Gemini API' });
+        console.error("Gemini API call failed:", error.message);
+        console.error("Stack trace:", error.stack);
+        res.status(500).json({ error: 'Error generating response from Gemini API', details: error.message });
     }
 };
 

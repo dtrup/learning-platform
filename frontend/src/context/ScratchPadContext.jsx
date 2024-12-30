@@ -43,18 +43,8 @@ export const ScratchPadProvider = ({ children }) => {
         localStorage.setItem('scratchPadEntries', JSON.stringify(updatedEntries));
     };
 
-    const exportEntries = () => {
-        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(entries, null, 2));
-        const downloadAnchorNode = document.createElement('a');
-        downloadAnchorNode.setAttribute("href", dataStr);
-        downloadAnchorNode.setAttribute("download", "scratch_pad_entries.json");
-        document.body.appendChild(downloadAnchorNode); // Required for Firefox
-        downloadAnchorNode.click();
-        downloadAnchorNode.remove();
-    };
-
     return (
-        <ScratchPadContext.Provider value={{ entries, addEntry, deleteEntry, updateNotes, exportEntries }}>
+        <ScratchPadContext.Provider value={{ entries, addEntry, deleteEntry, updateNotes }}>
             {children}
         </ScratchPadContext.Provider>
     );

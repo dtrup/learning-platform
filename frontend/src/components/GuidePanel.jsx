@@ -4,59 +4,71 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 const GuidePanel = ({ treeData, onSelect }) => {
-    const [expandedIds, setExpandedIds] = useState([]);
+    const [expandedNodes, setExpandedNodes] = useState({});
 
-    const toggleExpand = (id) => {
-        setExpandedIds(prev =>
-            prev.includes(id) ? prev.filter(eId => eId !== id) : [...prev, id]
-        );
+    const toggleNode = (id) => {
+        setExpandedNodes(prevState => ({
+            ...prevState,
+            [id]: !prevState[id],
+        }));
     };
 
-    const renderTree = (node, level = 0) => {
-        const isExpanded = expandedIds.includes(node.id);
+    /**
+     * Recursively renders the tree nodes.
+     * @param {Object} node - The current node.
+     * @param {number} depth - The current depth for indentation.
+     * @returns {JSX.Element} The rendered node.
+     */
+    const renderTree = (node, depth = 0) => {
+        const isExpanded = expandedNodes[node.id];
         const hasChildren = node.children && node.children.length > 0;
 
         return (
-            <div key={node.id} className={`pl-${level * 4} py-1`}>
+            <div key={node.id} className={`ml-${depth * 4} mt-2`}>
                 <div className="flex items-center">
-                    {hasChildren && (
+                    {hasChildren ? (
                         <button
-                            onClick={() => toggleExpand(node.id)}
-                            className="mr-2 focus:outline-none text-gray-600 hover:text-blue-500"
-                            aria-label={isExpanded ? 'Collapse section' : 'Expand section'}
+                            onClick={() => toggleNode(node.id)}
+                            className="mr-2 focus:outline-none text-gray-600 hover:text-gray-800"
+                            aria-label={isExpanded ? 'Collapse' : 'Expand'}
                         >
                             {isExpanded ? '-' : '+'}
                         </button>
+                    ) : (
+                        <span className="mr-2 w-4"></span> // Placeholder for alignment
                     )}
                     <button
                         onClick={() => onSelect(node)}
-                        className="text-left text-gray-700 hover:text-blue-500 transition-colors duration-200 w-full"
+                        className="text-left focus:outline-none hover:text-blue-500"
                     >
                         {node.title}
                     </button>
                 </div>
                 {hasChildren && isExpanded && (
-                    <div className="ml-4">
-                        {node.children.map(child => renderTree(child, level + 1))}
+                    <div>
+                        {node.children.map(child => renderTree(child, depth + 1))}
                     </div>
                 )}
             </div>
         );
     };
 
+    // Start rendering from the second level (children of the root)
     return (
-        <div className="bg-gray-100 w-full h-full p-4 overflow-y-auto border-r border-gray-300">
-            <h2 className="text-xl font-semibold mb-4">{treeData.title}</h2>
-            <div>
-                {treeData.children.map(child => renderTree(child))}
-            </div>
+        <div className="p-4 overflow-y-auto h-full">
+            <h2 className="text-xl font-semibold mb-4">Guides</h2>
+            {treeData.children && treeData.children.length > 0 ? (
+                treeData.children.map(child => renderTree(child))
+            ) : (
+                <p>No sections available.</p>
+            )}
         </div>
     );
 };
 
 GuidePanel.propTypes = {
-    treeData: PropTypes.object.isRequired,
-    onSelect: PropTypes.func.isRequired,
+    treeData: PropTypes.object.isRequired, // Root guide object containing children
+    onSelect: PropTypes.func.isRequired,   // Function to handle section selection
 };
 
 export default GuidePanel;
