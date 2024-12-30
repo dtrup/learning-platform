@@ -2,41 +2,50 @@
 
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { FaChevronRight, FaChevronDown } from 'react-icons/fa';
 
+/**
+ * Displays a tree of guide sections with expand/collapse,
+ * using simple caret icons in place of + and -.
+ */
 const GuidePanel = ({ treeData, onSelect }) => {
     const [expandedNodes, setExpandedNodes] = useState({});
 
     const toggleNode = (id) => {
-        setExpandedNodes(prevState => ({
-            ...prevState,
-            [id]: !prevState[id],
+        setExpandedNodes(prev => ({
+            ...prev,
+            [id]: !prev[id],
         }));
     };
 
     /**
-     * Recursively renders the tree nodes.
+     * Recursively renders each node and its children.
      * @param {Object} node - The current node.
-     * @param {number} depth - The current depth for indentation.
-     * @returns {JSX.Element} The rendered node.
+     * @param {number} depth - The indentation level.
      */
     const renderTree = (node, depth = 0) => {
         const isExpanded = expandedNodes[node.id];
         const hasChildren = node.children && node.children.length > 0;
 
         return (
-            <div key={node.id} className={`ml-${depth * 4} mt-2`}>
-                <div className="flex items-center">
+            <div key={node.id} className="mt-2">
+                <div
+                    className="flex items-center"
+                    style={{ paddingLeft: `${1.2 * depth}rem` }} // dynamic indent
+                >
                     {hasChildren ? (
                         <button
                             onClick={() => toggleNode(node.id)}
                             className="mr-2 focus:outline-none text-gray-600 hover:text-gray-800"
                             aria-label={isExpanded ? 'Collapse' : 'Expand'}
                         >
-                            {isExpanded ? '-' : '+'}
+                            {isExpanded ? <FaChevronDown /> : <FaChevronRight />}
                         </button>
                     ) : (
-                        <span className="mr-2 w-4"></span> // Placeholder for alignment
+                        // If no children, just reserve some space so titles line up
+                        <span className="mr-6" />
                     )}
+
                     <button
                         onClick={() => onSelect(node)}
                         className="text-left focus:outline-none hover:text-blue-500"
@@ -44,8 +53,9 @@ const GuidePanel = ({ treeData, onSelect }) => {
                         {node.title}
                     </button>
                 </div>
+
                 {hasChildren && isExpanded && (
-                    <div>
+                    <div className="border-l border-gray-300 ml-4 pl-2">
                         {node.children.map(child => renderTree(child, depth + 1))}
                     </div>
                 )}
@@ -53,7 +63,6 @@ const GuidePanel = ({ treeData, onSelect }) => {
         );
     };
 
-    // Start rendering from the second level (children of the root)
     return (
         <div className="p-4 overflow-y-auto h-full">
             <h2 className="text-xl font-semibold mb-4">Guides</h2>
@@ -67,8 +76,8 @@ const GuidePanel = ({ treeData, onSelect }) => {
 };
 
 GuidePanel.propTypes = {
-    treeData: PropTypes.object.isRequired, // Root guide object containing children
-    onSelect: PropTypes.func.isRequired,   // Function to handle section selection
+    treeData: PropTypes.object.isRequired, // Root guide object containing {children: [...]}
+    onSelect: PropTypes.func.isRequired,   // Called with the node the user clicked
 };
 
 export default GuidePanel;
