@@ -13,6 +13,7 @@
     "react-scripts": "5.0.1",
     "react-split": "^2.0.14",
     "react-toastify": "^11.0.2",
+    "remark-gfm": "^4.0.0",
     "uuid": "^11.0.3"
   },
   "scripts": {

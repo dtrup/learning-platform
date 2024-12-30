@@ -8,9 +8,6 @@ if (!process.env.GEMINI_API_KEY) {
     process.exit(1);
 }
 
-// Optional: Temporary log for debugging (remove in production)
-console.log("GEMINI_API_KEY loaded successfully.");
-
 // Initialize Generative AI
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 

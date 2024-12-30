@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 // Base URL for the backend API
-const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'; // Update this as per your backend configuration
+const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000'; // Update as per your backend configuration
 
 /**
  * Fetch all guides.
@@ -42,7 +42,8 @@ export const getGuideById = async (guideId) => {
 export const generateLLMContent = async (prompt) => {
     try {
         const response = await axios.post(`${API_BASE_URL}/api/generate`, { prompt });
-        return response.data.content; // Aligns with updated backend response
+        console.log("generateLLMContent response:", response.data); // Debugging
+        return response.data.content; // Ensure it matches the backend's key
     } catch (error) {
         console.error("Error generating content:", error);
         throw error;

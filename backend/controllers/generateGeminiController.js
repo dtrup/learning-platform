@@ -13,7 +13,7 @@ const generateContent = async (req, res) => {
     try {
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
         const result = await model.generateContent(prompt);
-        res.json({ response: result.response.text() }); // Use consistent key 'response'
+        res.json({ content: result.response.text() }); // Ensure consistent key 'content'
     } catch (error) {
         console.error("Gemini API call failed:", error.message);
         console.error("Stack trace:", error.stack);
