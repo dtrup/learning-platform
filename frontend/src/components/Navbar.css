@@ -1,0 +1,24 @@
+/* frontend/src/components/Navbar.css */
+
+.navbar {
+    background-color: #1f2937; /* Dark Gray */
+    padding: 1rem;
+}
+
+.navbar .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar .nav-links a {
+    color: #9ca3af; /* Light Gray */
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+    color: #ffffff; /* White */
+}

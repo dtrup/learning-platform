@@ -1,0 +1,46 @@
+/* frontend/src/App.css */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  background-color: #333;
+  padding: 1rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+}
+
+.main-content {
+  display: flex;
+  height: calc(100vh - 60px); /* Adjust based on navbar height */
+}
+
+.guide-panel, .content-panel, .scratch-pad {
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.guide-panel {
+  width: 20%;
+  border-right: 1px solid #ccc;
+}
+
+.content-panel {
+  width: 60%;
+  border-right: 1px solid #ccc;
+}
+
+.scratch-pad {
+  width: 20%;
+}
