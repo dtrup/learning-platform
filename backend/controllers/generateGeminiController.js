@@ -11,7 +11,7 @@ const generateContent = async (req, res) => {
     }
 
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash-preview-05-20" });
         const result = await model.generateContent(prompt);
         res.json({ content: result.response.text() }); // Ensure consistent key 'content'
     } catch (error) {
