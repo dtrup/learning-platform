@@ -1,0 +1,46 @@
+/* frontend/src/components/GuidePanel.css */
+
+.guide-panel {
+    background-color: #f3f4f6; /* Light Gray */
+    width: 25%;
+    padding: 1rem;
+    overflow-y: auto;
+    border-right: 1px solid #d1d5db; /* Gray Border */
+}
+
+.guide-panel h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #374151; /* Dark Gray */
+}
+
+.guide-panel ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.guide-panel li {
+    margin-bottom: 0.5rem;
+}
+
+.guide-panel button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #4b5563; /* Medium Gray */
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.guide-panel button:hover {
+    color: #1d4ed8; /* Blue */
+}
+
+.guide-panel .nested {
+    margin-left: 1rem;
+    border-left: 2px solid #d1d5db;
+    padding-left: 0.5rem;
+}

@@ -1,0 +1,55 @@
+/* frontend/src/components/ContentPanel.css */
+
+.content-panel {
+    flex-grow: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+.content-panel h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #1f2937; /* Dark Gray */
+}
+
+.content-panel p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #4b5563; /* Medium Gray */
+    margin-bottom: 1rem;
+}
+
+.content-panel .follow-up {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.content-panel .follow-up input {
+    flex-grow: 1;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db; /* Gray Border */
+    border-radius: 0.375rem;
+    font-size: 1rem;
+}
+
+.content-panel .follow-up button {
+    padding: 0.5rem 1rem;
+    background-color: #3b82f6; /* Blue */
+    color: #ffffff;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.content-panel .follow-up button:hover {
+    background-color: #2563eb; /* Darker Blue */
+}
+
+.content-panel .follow-up-response {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f3f4f6; /* Light Gray */
+    border-radius: 0.375rem;
+}

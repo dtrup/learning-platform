@@ -1,0 +1,31 @@
+/* frontend/src/index.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add to your CSS file (e.g., index.css) */
+
+/* Gutter for Vertical Split (Resizing Height) */
+.gutter-vertical {
+    background-color: #ccc;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 100% 6px;
+    cursor: row-resize;
+}
+
+/* Gutter for Horizontal Split (Resizing Width) */
+.gutter-horizontal {
+    background-color: #ccc;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 6px 100%;
+    cursor: col-resize;
+}
+
+/* Optional: Hover effect for gutters */
+.gutter-vertical:hover,
+.gutter-horizontal:hover {
+    background-color: #aaa;
+}
